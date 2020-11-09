@@ -17,6 +17,7 @@ public:
 	int paws;
 protected:
 	bool tail;
+	string teeth;
 };
 
 class Food 
@@ -48,10 +49,15 @@ public:
 		this->tail = tail;
 	}
 	bool get_tail() {
-		return this->tail;
+		return tail;
 	}
-	
-
+	// переместить методы с зубами в Animal 
+	void set_teeth(string teeth) {
+		this->teeth = teeth;
+	}
+	string get_teeth() {
+		return this->teeth;
+	}
 };
 
 // травоядный 
@@ -69,7 +75,7 @@ public:
 // всеядный 
 class Omnivorous: public Animal, public Food { 
 public:
-
+	// соединение подачи голоса хищника и травоядного 
 
 };
 
@@ -86,7 +92,9 @@ int main()
 
 	Predator Lion(1);
 	Lion.type_of_food();
-	cout<<Lion.get_tail();
+	cout << Lion.get_tail() << endl;
+	Lion.set_teeth("sharp");
+	cout << Lion.get_teeth() << endl;
 
 
 
