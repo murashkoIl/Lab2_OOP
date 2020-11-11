@@ -9,19 +9,22 @@ namespace Animals {
 	{
 	public:
 		virtual void cast_a_vote() {
-			cout << "Hrrrrr" << endl;
+			cout << "Vote: Hrrrrr" << endl;
 		}
 		virtual void sight() {
-			cout << "Eyes look forward" << endl;
+			cout << "Sight: Eyes look forward" << endl;
+		}
+		virtual void look_at_tree() {
+			cout << "Its gorgeous tree!" << endl;
 		}
 		void set_teeth(string teeth) {
 			this->teeth = teeth;
+			cout << "Teeth: " << teeth << endl;
 		}
-		string get_teeth() {
-			return this->teeth;
-		}
+		//string get_teeth() {
+		//	return this->teeth;
+		//}
 
-		// лапы
 		int paws;
 	protected:
 		bool tail;
@@ -55,55 +58,86 @@ namespace Animals {
 	public:
 		Predator(bool tail) {
 			this->tail = tail;
+			if (tail == true) {
+				cout << "Tail: exists" << endl;
+			}
+			else {
+				cout << "Tail: отсутствует" << endl;
+			}
 		}
-		bool get_tail() {
-			return tail;
-		}
+		//		void get_tail(bool tail) {
+		//			if (tail == true){
+		//			    cout << "Tail: exists" << endl;
+		//			}
+		//			else{
+		//			    cout << "Tail: отсутствует" << endl;
+		//			}
+		//		}
 	};
 
-	// травоядный 
+	// травоядный
 	class Grass_feeding : virtual public Animal, public PlantFood {
 	public:
 		void sight() override {
-			cout << "Eyes look to the sides" << endl;
+			cout << "Sight: Eyes look to the sides" << endl;
 		}
 		void cast_a_vote() override {
-			cout << "Frrr" << endl;
+			cout << "Vote: Frrr" << endl;
+		}
+		void look_at_tree() override {
+			cout << "I would like to eat this tree" << endl;
 		}
 
 	};
 
-	// всеядный 
+	// всеядный
 	class Omnivorous : public Animal, public Food {
 	public:
 		void cast_a_vote() override {
-			cout << "Fhfhfhrfh" << endl;
+			cout << "Vote: Fhfhfhrfh" << endl;
 		}
-
+		void look_at_tree() override {
+			cout << "WOW.This tree is AMAZING" << endl;
+		}
 	};
-
 }
 
 
 int main()
 {
 	using namespace Animals;
-	Grass_feeding Zebra;
-	Zebra.type_of_food();
-	Zebra.paws = 4;
-	cout << Zebra.paws << endl;
-	Omnivorous Vasya;
-	Vasya.type_of_food();
-	Vasya.cast_a_vote();
 
 	Predator Lion(true);
-	Lion.type_of_food();
-	cout << Lion.get_tail() << endl;
 	Lion.set_teeth("sharp");
-	cout << Lion.get_teeth() << endl;
+	Lion.cast_a_vote();
+	Lion.look_at_tree();
+	Lion.paws = 12;
+	Lion.sight();
+	Lion.type_of_food();
+	cout << "Paws: " << Lion.paws << endl << endl;
 
-	Predator predat = new Predator(true);
+	//cout << "|_(*O* )_/";
 
+	Omnivorous Rat;
+	Rat.set_teeth("sharp");
+	Rat.cast_a_vote();
+	Rat.look_at_tree();
+	Rat.paws = 4;
+	Rat.sight();
+	Rat.type_of_food();
+	cout << "Paws: " << Rat.paws << endl << endl;
+
+
+	Grass_feeding Giraffe;
+	Giraffe.set_teeth("curves");
+	Giraffe.cast_a_vote();
+	Giraffe.look_at_tree();
+	Giraffe.paws = 4;
+	Giraffe.sight();
+	Giraffe.type_of_food();
+	cout << "Paws: " << Giraffe.paws << endl << endl;
+
+	
 
 
 	return 0;
