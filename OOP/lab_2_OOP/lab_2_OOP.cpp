@@ -21,14 +21,13 @@ namespace Animals {
 			this->teeth = teeth;
 			cout << "Teeth: " << teeth << endl;
 		}
-		//string get_teeth() {
-		//	return this->teeth;
-		//}
 
 		int paws;
 	protected:
 		bool tail;
 		string teeth;
+	private:
+		int parents_num; 
 	};
 
 	class Food
@@ -64,15 +63,11 @@ namespace Animals {
 			else {
 				cout << "Tail: отсутствует" << endl;
 			}
+			
 		}
-		//		void get_tail(bool tail) {
-		//			if (tail == true){
-		//			    cout << "Tail: exists" << endl;
-		//			}
-		//			else{
-		//			    cout << "Tail: отсутствует" << endl;
-		//			}
-		//		}
+		/*void cast_a_vote() override {
+			cout << "Vote: Hrrrrr" << endl;
+		}*/
 	};
 
 	// травоядный
@@ -91,7 +86,7 @@ namespace Animals {
 	};
 
 	// всеядный
-	class Omnivorous : public Animal, public Food {
+	class Omnivorous : virtual public Animal, public Food {
 	public:
 		void cast_a_vote() override {
 			cout << "Vote: Fhfhfhrfh" << endl;
@@ -99,6 +94,16 @@ namespace Animals {
 		void look_at_tree() override {
 			cout << "WOW.This tree is AMAZING" << endl;
 		}
+	};
+
+	class Unusual_animal : virtual private Animal , public Food{
+	public:
+		int get_parents_number(int parents_num) {
+			this->num = parents_num;
+			return num;
+		}
+	private:
+		int num;
 	};
 }
 
@@ -116,7 +121,6 @@ int main()
 	Lion.type_of_food();
 	cout << "Paws: " << Lion.paws << endl << endl;
 
-	//cout << "|_(*O* )_/";
 
 	Omnivorous Rat;
 	Rat.set_teeth("sharp");
@@ -137,6 +141,10 @@ int main()
 	Giraffe.type_of_food();
 	cout << "Paws: " << Giraffe.paws << endl << endl;
 
+
+	Unusual_animal Ilya;
+	int parents = Ilya.get_parents_number(10);
+	cout <<"Number of ancestors of an unusual animal: "<< parents;
 	
 
 
